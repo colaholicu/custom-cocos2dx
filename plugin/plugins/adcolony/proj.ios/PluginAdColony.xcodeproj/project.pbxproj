@@ -1,0 +1,380 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4473FCE819E58B2300152C2D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4473FCE719E58B2300152C2D /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4473FCEA19E58B2900152C2D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4473FCE919E58B2900152C2D /* AudioToolbox.framework */; };
+		4473FCEC19E58B2E00152C2D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4473FCEB19E58B2E00152C2D /* AVFoundation.framework */; };
+		4473FCEE19E58B3300152C2D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4473FCED19E58B3300152C2D /* CFNetwork.framework */; };
+		4473FCF019E58B3A00152C2D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4473FCEF19E58B3A00152C2D /* CoreGraphics.framework */; };
+		4473FCF219E58B3E00152C2D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4473FCF119E58B3E00152C2D /* CoreMedia.framework */; };
+		4473FCF619E58B5100152C2D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4473FCF519E58B5100152C2D /* libsqlite3.dylib */; };
+		4473FCF819E58B5600152C2D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4473FCF719E58B5600152C2D /* MediaPlayer.framework */; };
+		4473FCFA19E58B5B00152C2D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4473FCF919E58B5B00152C2D /* QuartzCore.framework */; };
+		4473FCFC19E58B6000152C2D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4473FCFB19E58B6000152C2D /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4473FCFD19E58B6B00152C2D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA86650E168BE22D0073E055 /* SystemConfiguration.framework */; };
+		4473FCFF19E58B7000152C2D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4473FCFE19E58B7000152C2D /* UIKit.framework */; };
+		44751D7519E7EC1F00017D57 /* PIAdColony.m in Sources */ = {isa = PBXBuildFile; fileRef = 44751D7419E7EC1F00017D57 /* PIAdColony.m */; };
+		44751D7719E7EC7000017D57 /* AdColony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44751D7619E7EC7000017D57 /* AdColony.framework */; };
+		44751D7819E7FA9C00017D57 /* libPluginAdColony.a in Copy Files */ = {isa = PBXBuildFile; fileRef = FA09A372168AFD41008C1C7B /* libPluginAdColony.a */; };
+		44751D8219E800CB00017D57 /* AdColony.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 44751D7619E7EC7000017D57 /* AdColony.framework */; };
+		44751D8619E801FD00017D57 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44751D8519E801FD00017D57 /* libz.1.2.5.dylib */; };
+		44751D8819E8021E00017D57 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44751D8719E8021E00017D57 /* CoreTelephony.framework */; };
+		44751D8A19E8022700017D57 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44751D8919E8022700017D57 /* EventKit.framework */; };
+		44751D8C19E8023000017D57 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44751D8B19E8023000017D57 /* EventKitUI.framework */; };
+		44751D8E19E8023D00017D57 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44751D8D19E8023D00017D57 /* MessageUI.framework */; };
+		44751D9019E8024B00017D57 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44751D8F19E8024B00017D57 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		FA09A376168AFD41008C1C7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA09A375168AFD41008C1C7B /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		44751D8119E800BF00017D57 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				44751D8219E800CB00017D57 /* AdColony.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA09A370168AFD41008C1C7B /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(SRCROOT)/../../../publish/ios";
+			dstSubfolderSpec = 0;
+			files = (
+				44751D7819E7FA9C00017D57 /* libPluginAdColony.a in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4473FCE719E58B2300152C2D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		4473FCE919E58B2900152C2D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4473FCEB19E58B2E00152C2D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4473FCED19E58B3300152C2D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		4473FCEF19E58B3A00152C2D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4473FCF119E58B3E00152C2D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		4473FCF319E58B4B00152C2D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		4473FCF519E58B5100152C2D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		4473FCF719E58B5600152C2D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		4473FCF919E58B5B00152C2D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4473FCFB19E58B6000152C2D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		4473FCFE19E58B7000152C2D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		44751D6F19E7EB3700017D57 /* PluginAdColony-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PluginAdColony-Prefix.pch"; sourceTree = "<group>"; };
+		44751D7319E7EC1F00017D57 /* PIAdColony.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIAdColony.h; sourceTree = "<group>"; };
+		44751D7419E7EC1F00017D57 /* PIAdColony.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIAdColony.m; sourceTree = "<group>"; };
+		44751D7619E7EC7000017D57 /* AdColony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AdColony.framework; sourceTree = "<group>"; };
+		44751D8519E801FD00017D57 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		44751D8719E8021E00017D57 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		44751D8919E8022700017D57 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		44751D8B19E8023000017D57 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		44751D8D19E8023D00017D57 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		44751D8F19E8024B00017D57 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		FA09A372168AFD41008C1C7B /* libPluginAdColony.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPluginAdColony.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA09A375168AFD41008C1C7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FA86650E168BE22D0073E055 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FA09A36F168AFD41008C1C7B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44751D9019E8024B00017D57 /* Social.framework in Frameworks */,
+				44751D8E19E8023D00017D57 /* MessageUI.framework in Frameworks */,
+				44751D8C19E8023000017D57 /* EventKitUI.framework in Frameworks */,
+				44751D8A19E8022700017D57 /* EventKit.framework in Frameworks */,
+				44751D8819E8021E00017D57 /* CoreTelephony.framework in Frameworks */,
+				44751D8619E801FD00017D57 /* libz.1.2.5.dylib in Frameworks */,
+				44751D7719E7EC7000017D57 /* AdColony.framework in Frameworks */,
+				4473FCFF19E58B7000152C2D /* UIKit.framework in Frameworks */,
+				4473FCFD19E58B6B00152C2D /* SystemConfiguration.framework in Frameworks */,
+				4473FCFC19E58B6000152C2D /* StoreKit.framework in Frameworks */,
+				4473FCFA19E58B5B00152C2D /* QuartzCore.framework in Frameworks */,
+				4473FCF819E58B5600152C2D /* MediaPlayer.framework in Frameworks */,
+				4473FCF619E58B5100152C2D /* libsqlite3.dylib in Frameworks */,
+				FA09A376168AFD41008C1C7B /* Foundation.framework in Frameworks */,
+				4473FCF219E58B3E00152C2D /* CoreMedia.framework in Frameworks */,
+				4473FCF019E58B3A00152C2D /* CoreGraphics.framework in Frameworks */,
+				4473FCEE19E58B3300152C2D /* CFNetwork.framework in Frameworks */,
+				4473FCEC19E58B2E00152C2D /* AVFoundation.framework in Frameworks */,
+				4473FCEA19E58B2900152C2D /* AudioToolbox.framework in Frameworks */,
+				4473FCE819E58B2300152C2D /* AdSupport.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		898D59B519E280DF00D7AEC1 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				44751D6F19E7EB3700017D57 /* PluginAdColony-Prefix.pch */,
+				44751D7319E7EC1F00017D57 /* PIAdColony.h */,
+				44751D7419E7EC1F00017D57 /* PIAdColony.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		FA09A367168AFD41008C1C7B = {
+			isa = PBXGroup;
+			children = (
+				898D59B519E280DF00D7AEC1 /* Classes */,
+				FA09A374168AFD41008C1C7B /* Frameworks */,
+				FA09A373168AFD41008C1C7B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FA09A373168AFD41008C1C7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA09A372168AFD41008C1C7B /* libPluginAdColony.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA09A374168AFD41008C1C7B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44751D8F19E8024B00017D57 /* Social.framework */,
+				44751D8D19E8023D00017D57 /* MessageUI.framework */,
+				44751D8B19E8023000017D57 /* EventKitUI.framework */,
+				44751D8919E8022700017D57 /* EventKit.framework */,
+				44751D8719E8021E00017D57 /* CoreTelephony.framework */,
+				44751D8519E801FD00017D57 /* libz.1.2.5.dylib */,
+				44751D7619E7EC7000017D57 /* AdColony.framework */,
+				4473FCFE19E58B7000152C2D /* UIKit.framework */,
+				4473FCFB19E58B6000152C2D /* StoreKit.framework */,
+				4473FCF919E58B5B00152C2D /* QuartzCore.framework */,
+				4473FCF719E58B5600152C2D /* MediaPlayer.framework */,
+				4473FCF519E58B5100152C2D /* libsqlite3.dylib */,
+				4473FCF319E58B4B00152C2D /* libz.dylib */,
+				4473FCF119E58B3E00152C2D /* CoreMedia.framework */,
+				4473FCEF19E58B3A00152C2D /* CoreGraphics.framework */,
+				4473FCED19E58B3300152C2D /* CFNetwork.framework */,
+				4473FCEB19E58B2E00152C2D /* AVFoundation.framework */,
+				4473FCE919E58B2900152C2D /* AudioToolbox.framework */,
+				4473FCE719E58B2300152C2D /* AdSupport.framework */,
+				FA86650E168BE22D0073E055 /* SystemConfiguration.framework */,
+				FA09A375168AFD41008C1C7B /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FA09A371168AFD41008C1C7B /* PluginAdColony */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA09A380168AFD41008C1C7B /* Build configuration list for PBXNativeTarget "PluginAdColony" */;
+			buildPhases = (
+				FA09A36E168AFD41008C1C7B /* Sources */,
+				FA09A36F168AFD41008C1C7B /* Frameworks */,
+				44751D8119E800BF00017D57 /* CopyFiles */,
+				FA09A370168AFD41008C1C7B /* Copy Files */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PluginAdColony;
+			productName = libPluginGoogleAnalytics;
+			productReference = FA09A372168AFD41008C1C7B /* libPluginAdColony.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FA09A369168AFD41008C1C7B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = zhangbin;
+			};
+			buildConfigurationList = FA09A36C168AFD41008C1C7B /* Build configuration list for PBXProject "PluginAdColony" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FA09A367168AFD41008C1C7B;
+			productRefGroup = FA09A373168AFD41008C1C7B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FA09A371168AFD41008C1C7B /* PluginAdColony */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FA09A36E168AFD41008C1C7B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44751D7519E7EC1F00017D57 /* PIAdColony.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FA09A37E168AFD41008C1C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FA09A37F168AFD41008C1C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FA09A381168AFD41008C1C7B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/VungleSDK.embeddedframework",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PluginAdColony-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../protocols/platform/ios";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../platform/ios\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-fobjc-arc",
+				);
+				PRODUCT_NAME = PluginAdColony;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		FA09A382168AFD41008C1C7B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/VungleSDK.embeddedframework",
+				);
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PluginAdColony-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../protocols/platform/ios";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../platform/ios\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-fobjc-arc",
+				);
+				PRODUCT_NAME = PluginAdColony;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FA09A36C168AFD41008C1C7B /* Build configuration list for PBXProject "PluginAdColony" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA09A37E168AFD41008C1C7B /* Debug */,
+				FA09A37F168AFD41008C1C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA09A380168AFD41008C1C7B /* Build configuration list for PBXNativeTarget "PluginAdColony" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA09A381168AFD41008C1C7B /* Debug */,
+				FA09A382168AFD41008C1C7B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FA09A369168AFD41008C1C7B /* Project object */;
+}

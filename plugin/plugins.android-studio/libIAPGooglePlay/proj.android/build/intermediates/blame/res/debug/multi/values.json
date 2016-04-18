@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/Users/roag01-mac/Desktop/proiect/git/Engineering/Runner/cocos2d/plugin/plugins.android-studio/libIAPGooglePlay/proj.android/build/intermediates/res/merged/debug/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 53,
+                    "endOffset": 104
+                },
+                "from": {
+                    "file": "/Users/roag01-mac/Desktop/proiect/git/Engineering/Runner/cocos2d/plugin/plugins.android-studio/libIAPGooglePlay/proj.android/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 1,
+                        "startColumn": 4,
+                        "startOffset": 16,
+                        "endColumn": 53,
+                        "endOffset": 65
+                    }
+                }
+            }
+        ]
+    }
+]

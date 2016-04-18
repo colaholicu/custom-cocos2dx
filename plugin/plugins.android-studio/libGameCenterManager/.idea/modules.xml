@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/libGameCenterManager.iml" filepath="$PROJECT_DIR$/libGameCenterManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libPluginProtocol/libPluginProtocol.iml" filepath="$PROJECT_DIR$/libPluginProtocol/libPluginProtocol.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,13 @@
+PODS:
+  - Leanplum-iOS-LocationAndBeacons (1.3.7)
+  - Leanplum-iOS-SDK (1.3.8.1)
+
+DEPENDENCIES:
+  - Leanplum-iOS-LocationAndBeacons
+  - Leanplum-iOS-SDK
+
+SPEC CHECKSUMS:
+  Leanplum-iOS-LocationAndBeacons: 85831301540582b0e37705a6219e49f028bbd0a0
+  Leanplum-iOS-SDK: df25dec4dc038b022901739d06c11109fc5df5dd
+
+COCOAPODS: 0.37.2

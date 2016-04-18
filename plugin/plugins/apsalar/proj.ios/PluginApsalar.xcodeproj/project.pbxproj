@@ -1,0 +1,312 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		269B5F101CA31156006F4DBA /* libApsalar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 269B5F0F1CA31156006F4DBA /* libApsalar.a */; };
+		26C3087C1BA6FB320037FEE4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C3087B1BA6FB320037FEE4 /* libsqlite3.dylib */; };
+		26C3087D1BA6FB440037FEE4 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C308791BA6FB160037FEE4 /* libz.1.dylib */; };
+		26F651E31B29A5EF00873C3C /* PluginApsalar.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F651E21B29A5EF00873C3C /* PluginApsalar.m */; };
+		26F651E41B29B01200873C3C /* libPluginApsalar.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 26F651C71B29A42300873C3C /* libPluginApsalar.a */; };
+		26F651ED1B29B88E00873C3C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F651EC1B29B88E00873C3C /* SystemConfiguration.framework */; };
+		26F651EF1B29B89900873C3C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F651EE1B29B89900873C3C /* Security.framework */; };
+		26F651F31B29B8B700873C3C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F651F21B29B8B700873C3C /* AdSupport.framework */; };
+		26F651F51B29B8C200873C3C /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F651F41B29B8C200873C3C /* iAd.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		26F651C51B29A42300873C3C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(SRCROOT)/../../../publish/ios";
+			dstSubfolderSpec = 0;
+			files = (
+				26F651E41B29B01200873C3C /* libPluginApsalar.a in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		26379B2E1BA7068800A500A9 /* Apsalar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Apsalar.h; path = Apsalar/Apsalar.h; sourceTree = "<group>"; };
+		26379B2F1BA7068800A500A9 /* Apsalar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Apsalar.js; path = Apsalar/Apsalar.js; sourceTree = "<group>"; };
+		269B5F0F1CA31156006F4DBA /* libApsalar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libApsalar.a; path = Apsalar/libApsalar.a; sourceTree = "<group>"; };
+		26C308791BA6FB160037FEE4 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
+		26C3087B1BA6FB320037FEE4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../../../../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
+		26F651C71B29A42300873C3C /* libPluginApsalar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPluginApsalar.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		26F651E11B29A5EF00873C3C /* PluginApsalar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginApsalar.h; sourceTree = "<group>"; };
+		26F651E21B29A5EF00873C3C /* PluginApsalar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginApsalar.m; sourceTree = "<group>"; };
+		26F651EC1B29B88E00873C3C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		26F651EE1B29B89900873C3C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		26F651F21B29B8B700873C3C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		26F651F41B29B8C200873C3C /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		26F651C41B29A42300873C3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26C3087D1BA6FB440037FEE4 /* libz.1.dylib in Frameworks */,
+				26C3087C1BA6FB320037FEE4 /* libsqlite3.dylib in Frameworks */,
+				26F651F51B29B8C200873C3C /* iAd.framework in Frameworks */,
+				26F651F31B29B8B700873C3C /* AdSupport.framework in Frameworks */,
+				269B5F101CA31156006F4DBA /* libApsalar.a in Frameworks */,
+				26F651EF1B29B89900873C3C /* Security.framework in Frameworks */,
+				26F651ED1B29B88E00873C3C /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		26C3087E1BA6FE3C0037FEE4 /* Apsalar */ = {
+			isa = PBXGroup;
+			children = (
+				26379B2E1BA7068800A500A9 /* Apsalar.h */,
+				26379B2F1BA7068800A500A9 /* Apsalar.js */,
+				269B5F0F1CA31156006F4DBA /* libApsalar.a */,
+			);
+			name = Apsalar;
+			sourceTree = "<group>";
+		};
+		26F651BE1B29A42200873C3C = {
+			isa = PBXGroup;
+			children = (
+				26F651F61B29B8C500873C3C /* Frameworks */,
+				26F651E11B29A5EF00873C3C /* PluginApsalar.h */,
+				26F651E21B29A5EF00873C3C /* PluginApsalar.m */,
+				26F651C81B29A42300873C3C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		26F651C81B29A42300873C3C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26F651C71B29A42300873C3C /* libPluginApsalar.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		26F651F61B29B8C500873C3C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26C3087E1BA6FE3C0037FEE4 /* Apsalar */,
+				26C3087B1BA6FB320037FEE4 /* libsqlite3.dylib */,
+				26C308791BA6FB160037FEE4 /* libz.1.dylib */,
+				26F651F41B29B8C200873C3C /* iAd.framework */,
+				26F651F21B29B8B700873C3C /* AdSupport.framework */,
+				26F651EE1B29B89900873C3C /* Security.framework */,
+				26F651EC1B29B88E00873C3C /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		26F651C61B29A42300873C3C /* PluginApsalar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26F651DB1B29A42300873C3C /* Build configuration list for PBXNativeTarget "PluginApsalar" */;
+			buildPhases = (
+				26F651C31B29A42300873C3C /* Sources */,
+				26F651C41B29A42300873C3C /* Frameworks */,
+				26F651C51B29A42300873C3C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PluginApsalar;
+			productName = PluginApsalar;
+			productReference = 26F651C71B29A42300873C3C /* libPluginApsalar.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		26F651BF1B29A42200873C3C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Iosif Murariu";
+				TargetAttributes = {
+					26F651C61B29A42300873C3C = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 26F651C21B29A42200873C3C /* Build configuration list for PBXProject "PluginApsalar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 26F651BE1B29A42200873C3C;
+			productRefGroup = 26F651C81B29A42300873C3C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				26F651C61B29A42300873C3C /* PluginApsalar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		26F651C31B29A42300873C3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26F651E31B29A5EF00873C3C /* PluginApsalar.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		26F651D91B29A42300873C3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		26F651DA1B29A42300873C3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		26F651DC1B29A42300873C3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../../protocols/platform/ios",
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Apsalar",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		26F651DD1B29A42300873C3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../../protocols/platform/ios",
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Apsalar",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		26F651C21B29A42200873C3C /* Build configuration list for PBXProject "PluginApsalar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26F651D91B29A42300873C3C /* Debug */,
+				26F651DA1B29A42300873C3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26F651DB1B29A42300873C3C /* Build configuration list for PBXNativeTarget "PluginApsalar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26F651DC1B29A42300873C3C /* Debug */,
+				26F651DD1B29A42300873C3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 26F651BF1B29A42200873C3C /* Project object */;
+}

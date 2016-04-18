@@ -1,0 +1,67 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+    }
+}
+
+apply plugin: 'com.android.library'
+
+// magic flag for excluding BuildConfig.class. unfortunately, it's deprecated, but with no alternative.
+android.packageBuildConfig = false
+// fixes another weird error:
+//Execution failed for task ':processDebugAndroidTestResources'.
+//        > Error: more than one library with package name 'org.cocos2dx.plugin'
+// also deprecated.
+android.enforceUniquePackageName = false
+
+
+def renameArtifact(variant, defaultConfig) {
+    variant.outputs.each { output ->
+        def fullName = output.outputFile.name
+        def projectName = fullName.substring(0, fullName.lastIndexOf('.'))
+
+        output.outputFile = new File(
+                (String) output.outputFile.parent,
+                (String) output.outputFile.name.replace(projectName, "libGameCenterManager"))
+    }
+}
+
+android {
+    compileSdkVersion = 23
+    buildToolsVersion = "23.0.2"
+
+    libraryVariants.all { variant -> renameArtifact(variant, defaultConfig) }
+
+    defaultConfig {
+        minSdkVersion = 17
+        targetSdkVersion = 23
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    dexOptions {
+        incremental = false
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled = false
+            debuggable = true
+        }
+        release {
+            minifyEnabled = false
+            proguardFiles += file('proguard-rules.pro')
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':libPluginProtocol')
+    compile 'com.google.android.gms:play-services:+'
+}
+
+repositories { mavenCentral() }

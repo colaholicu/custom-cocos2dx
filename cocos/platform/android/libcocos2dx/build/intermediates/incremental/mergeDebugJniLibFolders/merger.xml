@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/roag01-mac/Desktop/proiect/Android_phone_GoPirates_origin/cocos2d/cocos/platform/android/libcocos2dx/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/Users/roag01-mac/Desktop/proiect/Android_phone_GoPirates_origin/cocos2d/cocos/platform/android/libcocos2dx/src/debug/jniLibs"/></dataSet></merger>
