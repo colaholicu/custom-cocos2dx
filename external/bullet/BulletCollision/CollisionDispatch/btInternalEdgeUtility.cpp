@@ -198,8 +198,6 @@ struct btConnectivityProcessor : public btTriangleCallback
 
 				if (len2<m_triangleInfoMap->m_planarEpsilon)
 				{
-					angle2 = 0.f;
-					ang4 = 0.f;
 				} else
 				{
 
@@ -648,8 +646,8 @@ void btAdjustInternalEdgeContacts(btManifoldPoint& cp, const btCollisionObjectWr
 		if(len<triangleInfoMapPtr->m_edgeDistanceThreshold)
 		if( bestedge==1 )
 		{
-			isNearEdge = true;
 #ifdef BT_INTERNAL_EDGE_DEBUG_DRAW
+			isNearEdge = true;
 			btDebugDrawLine(tr*nearest,tr*(nearest+tri_normal*10),white);
 #endif //BT_INTERNAL_EDGE_DEBUG_DRAW
 

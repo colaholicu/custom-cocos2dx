@@ -301,9 +301,12 @@ btVector3 btMultiBody::getAngularMomentum() const
 {
 	int num_links = getNumLinks();
     // TODO: would be better not to allocate memory here
-    btAlignedObjectArray<btVector3> omega;omega.resize(num_links+1);
-	btAlignedObjectArray<btVector3> vel;vel.resize(num_links+1);
-    btAlignedObjectArray<btQuaternion> rot_from_world;rot_from_world.resize(num_links+1);
+    btAlignedObjectArray<btVector3> omega;
+    omega.resize(num_links+1);
+	btAlignedObjectArray<btVector3> vel;
+    vel.resize(num_links+1);
+    btAlignedObjectArray<btQuaternion> rot_from_world;
+    rot_from_world.resize(num_links+1);
     compTreeLinkVelocities(&omega[0], &vel[0]);
 
     rot_from_world[0] = base_quat;

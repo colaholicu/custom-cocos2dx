@@ -484,17 +484,18 @@ void	btMultiBodyDynamicsWorld::integrateTransforms(btScalar timeStep)
 		btAlignedObjectArray<btQuaternion> world_to_local;
 		btAlignedObjectArray<btVector3> local_origin;
 
-		for (int b=0;b<m_multiBodies.size();b++)
+		for (int b = 0; b < m_multiBodies.size(); ++b)
 		{
-			btMultiBody* bod = m_multiBodies[b];
+			btMultiBody* bod = m_multiBodies.at(b);
 			bool isSleeping = false;
 			if (bod->getBaseCollider() && bod->getBaseCollider()->getActivationState() == ISLAND_SLEEPING)
 			{
 				isSleeping = true;
-			} 
-			for (int b=0;b<bod->getNumLinks();b++)
+			}
+            
+			for (int b2 = 0; b2 < bod->getNumLinks(); ++b2)
 			{
-				if (bod->getLink(b).m_collider && bod->getLink(b).m_collider->getActivationState()==ISLAND_SLEEPING)
+				if (bod->getLink(b2).m_collider && bod->getLink(b2).m_collider->getActivationState() == ISLAND_SLEEPING)
 					isSleeping = true;
 			}
 
@@ -511,18 +512,17 @@ void	btMultiBodyDynamicsWorld::integrateTransforms(btScalar timeStep)
 
 	 
 
-				world_to_local[0] = bod->getWorldToBaseRot();
-				local_origin[0] = bod->getBasePos();
+				world_to_local.at(0) = bod->getWorldToBaseRot();
+				local_origin.at(0) = bod->getBasePos();
 
 				if (bod->getBaseCollider())
 				{
 					btVector3 posr = local_origin[0];
-					float pos[4]={posr.x(),posr.y(),posr.z(),1};
-					float quat[4]={-world_to_local[0].x(),-world_to_local[0].y(),-world_to_local[0].z(),world_to_local[0].w()};
+					float quat[4] = {-world_to_local.at(0).x(), -world_to_local.at(0).y(), -world_to_local.at(0).z(), world_to_local.at(0).w()};
 					btTransform tr;
 					tr.setIdentity();
 					tr.setOrigin(posr);
-					tr.setRotation(btQuaternion(quat[0],quat[1],quat[2],quat[3]));
+					tr.setRotation(btQuaternion(quat[0], quat[1], quat[2], quat[3]));
 
 					bod->getBaseCollider()->setWorldTransform(tr);
 
@@ -547,8 +547,7 @@ void	btMultiBodyDynamicsWorld::integrateTransforms(btScalar timeStep)
 						int index = link+1;
 
 						btVector3 posr = local_origin[index];
-						float pos[4]={posr.x(),posr.y(),posr.z(),1};
-						float quat[4]={-world_to_local[index].x(),-world_to_local[index].y(),-world_to_local[index].z(),world_to_local[index].w()};
+						float quat[4] = {-world_to_local.at(index).x(), -world_to_local.at(index).y(), -world_to_local.at(index).z(), world_to_local.at(index).w()};
 						btTransform tr;
 						tr.setIdentity();
 						tr.setOrigin(posr);
