@@ -698,8 +698,11 @@ unsigned char* FileUtils::getFileData(const std::string& filename, const char* m
         fseek(fp,0,SEEK_END);
         *size = ftell(fp);
         fseek(fp,0,SEEK_SET);
-        buffer = (unsigned char*)malloc(*size);
+        ssize_t sz = (*size);
+        buffer = (unsigned char*)malloc((*size)+1);
         *size = fread(buffer,sizeof(unsigned char), *size,fp);
+        buffer[(*size)] = '\0';
+        CCASSERT(buffer[(*size)] == '\0' && (*size <= sz), "Shit");
         fclose(fp);
     } while (0);
 
