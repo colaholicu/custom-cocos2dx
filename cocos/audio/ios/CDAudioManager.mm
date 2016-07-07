@@ -23,7 +23,8 @@
  */
 
 
-#import "CDAudioManager.h"
+#import "audio/ios/CDAudioManager.h"
+#import <functional>
 
 NSString * const kCDN_AudioManagerInitialised = @"kCDN_AudioManagerInitialised";
 
@@ -61,7 +62,7 @@ NSString * const kCDN_AudioManagerInitialised = @"kCDN_AudioManagerInitialised";
 }    
 
 -(void) load:(NSString*) filePath {
-    //We have alread loaded a file previously,  check if we are being asked to load the same file
+    //We have already loaded a file previously, check if we are being asked to load the same file
     if (state == kLAS_Init || ![filePath isEqualToString:audioSourceFilePath]) {
         CDLOGINFO(@"Denshion::CDLongAudioSource - Loading new audio source %@",filePath);
         //New file
@@ -211,7 +212,7 @@ NSString * const kCDN_AudioManagerInitialised = @"kCDN_AudioManagerInitialised";
 #endif    
     if (delegate && [delegate respondsToSelector:@selector(cdAudioSourceDidFinishPlaying:)]) {
         [delegate cdAudioSourceDidFinishPlaying:self];
-    }    
+    }
 }    
 
 -(void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
@@ -329,11 +330,17 @@ static BOOL configured = FALSE;
     configured = TRUE;
 }    
 
--(BOOL) isOtherAudioPlaying {
+-(BOOL) isOtherAudioPlaying
+{
+    // AudioSessionGetProperty removed from tvOS 9.1
+#if defined(CC_TARGET_OS_TVOS)
+    return false;
+#else
     UInt32 isPlaying = 0;
     UInt32 varSize = sizeof(isPlaying);
     AudioSessionGetProperty (kAudioSessionProperty_OtherAudioIsPlaying, &varSize, &isPlaying);
     return (isPlaying != 0);
+#endif
 }
 
 -(void) setMode:(tAudioManagerMode) mode {
@@ -374,10 +381,6 @@ static BOOL configured = FALSE;
             break;
             
         default:
-            // use only these settings cuz we want the app to be able to play both the iPod music and the game's music (the latter at different volumes)
-            _audioSessionCategory = AVAudioSessionCategoryAmbient;
-            willPlayBackgroundMusic = YES;
-#ifdef DONT_USE_THIS_SHITTY_CODE
             //kAudioManagerFxPlusMusicIfNoOtherAudio
             if ([self isOtherAudioPlaying]) {
                 CDLOGINFO(@"Denshion::CDAudioManager - Other audio is playing audio will be shared");
@@ -385,12 +388,11 @@ static BOOL configured = FALSE;
                 _audioSessionCategory = AVAudioSessionCategoryAmbient;
                 willPlayBackgroundMusic = NO;
             } else {
-                CDLOGINFO(@"Denshion::CDAudioManager - Other audio is playing audio will be shared");
+                CDLOGINFO(@"Denshion::CDAudioManager - Other audio is not playing audio will be exclusive");
                 //_audioSessionCategory = kAudioSessionCategory_SoloAmbientSound;
-                _audioSessionCategory = AVAudioSessionCategoryAmbient;
+                _audioSessionCategory = AVAudioSessionCategorySoloAmbient;
                 willPlayBackgroundMusic = YES;
-            }
-#endif
+            }    
             
             break;
     }
@@ -414,13 +416,17 @@ static BOOL configured = FALSE;
 
 - (id) init: (tAudioManagerMode) mode {
     if ((self = [super init])) {
-        
-        //Initialise the audio session 
+
+        // 'delegate' not supported on tvOS
+#if !defined(CC_TARGET_OS_TVOS)
+        //Initialise the audio session
         AVAudioSession* session = [AVAudioSession sharedInstance];
         session.delegate = self;
+#endif
     
         _mode = mode;
         backgroundMusicCompletionSelector = nil;
+        _strNextTrack = nil;
         _isObservingAppEvents = FALSE;
         _mute = NO;
         _resigned = NO;
@@ -479,7 +485,20 @@ static BOOL configured = FALSE;
 
 -(BOOL) isBackgroundMusicPlaying {
     return [self.backgroundMusic isPlaying];
-}    
+}
+
+-(BOOL) isEffectPlaying:(unsigned int) sourceId {
+    ALint state;
+    alGetSourcei(sourceId, AL_SOURCE_STATE, &state);
+    if (AL_PLAYING == state)
+        return TRUE;
+    
+    return FALSE;
+}
+
+-(float) getDurationMusicBackground {
+    return [self.backgroundMusic.audioSourcePlayer duration];
+}
 
 //NB: originally I tried using a route change listener and intended to store the current route,
 //however, on a 3gs running 3.1.2 no route change is generated when the user switches the 
@@ -487,7 +506,7 @@ static BOOL configured = FALSE;
 //determine ringer switch state
 -(BOOL) isDeviceMuted {
 
-#if TARGET_IPHONE_SIMULATOR
+#if TARGET_IPHONE_SIMULATOR || defined(CC_TARGET_OS_TVOS)
     //Calling audio route stuff on the simulator causes problems
     return NO;
 #else    
@@ -606,7 +625,15 @@ static BOOL configured = FALSE;
 -(void) setBackgroundMusicCompletionListener:(id) listener selector:(SEL) selector {
     backgroundMusicCompletionListener = listener;
     backgroundMusicCompletionSelector = selector;
-}    
+}
+
+-(void) setNextTrack:(NSString*) strNextTrack
+{
+    if ([strNextTrack length] == 0)
+        _strNextTrack = nil;
+    else
+        _strNextTrack = [strNextTrack copy];
+}
 
 /*
  * Call this method to have the audio manager automatically handle application resign and
@@ -632,7 +659,7 @@ static BOOL configured = FALSE;
 - (void) applicationWillResignActive {
     _resigned = YES;
     
-    //Set the audio sesssion to one that allows sharing so that other audio won't be clobbered on resume
+    //Set the audio session to one that allows sharing so that other audio won't be clobbered on resume
     [self audioSessionSetCategory:AVAudioSessionCategoryAmbient];
     
     switch (_resignBehavior) {
@@ -723,8 +750,13 @@ static BOOL configured = FALSE;
     CDLOGINFO(@"Denshion::CDAudioManager - audio manager got told background music finished");
     if (backgroundMusicCompletionSelector != nil) {
         [backgroundMusicCompletionListener performSelector:backgroundMusicCompletionSelector];
-    }    
-}    
+    }
+    
+    if (_strNextTrack != nil)
+    {
+        [[CDAudioManager sharedManager] playBackgroundMusic:_strNextTrack loop:TRUE];
+    }
+}
 
 -(void) beginInterruption {
     CDLOGINFO(@"Denshion::CDAudioManager - begin interruption");

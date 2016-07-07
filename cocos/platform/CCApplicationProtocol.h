@@ -146,6 +146,9 @@ public:
      * @lua NA
      */
     virtual bool openURL(const std::string &url) = 0;
+
+
+    virtual void requestProductsWithCompletion(const char* str) = 0;
 };
 
 // end of platform group

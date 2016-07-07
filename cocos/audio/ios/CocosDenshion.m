@@ -22,7 +22,7 @@
  $Id$
  */
 
-#import "CocosDenshion.h"
+#import "audio/ios/CocosDenshion.h"
 
 ALvoid  alBufferDataStaticProc(const ALint bid, ALenum format, ALvoid* data, ALsizei size, ALsizei freq);
 ALvoid  alcMacOSXMixerOutputRateProc(const ALdouble value);
@@ -974,15 +974,6 @@ static BOOL _mixerRateSet = NO;
   if (!functioning_) {
       return;
   }
-    
-    // only pause a sound id that is playing
-    ALint state;
-    alGetSourcei(sourceId, AL_SOURCE_STATE, &state);
-    if (state != AL_PLAYING)
-    {
-        return;
-    }
-    
   alSourcePause(sourceId);
   alGetError();//Clear error in case we pause any sounds that couldn't be paused
 }

@@ -22,7 +22,7 @@
  $Id$
  */
 
-#import "SimpleAudioEngine_objc.h"
+#import "audio/ios/SimpleAudioEngine_objc.h"
 
 @implementation SimpleAudioEngine
 
@@ -115,7 +115,16 @@ static CDBufferManager *bufferManager = nil;
 
 -(BOOL) isBackgroundMusicPlaying {
     return [am isBackgroundMusicPlaying];
-}    
+}
+
+-(BOOL) isEffectPlaying:(unsigned int) sourceId {
+    ALint state;
+    alGetSourcei(sourceId, AL_SOURCE_STATE, &state);
+    if (AL_PLAYING == state)
+        return TRUE;
+    
+    return FALSE;
+}
 
 -(BOOL) willPlayBackgroundMusic {
     return [am willPlayBackgroundMusic];
@@ -235,6 +244,14 @@ static CDBufferManager *bufferManager = nil;
     } else {
         return nil;
     }    
-}    
+}
+
+-(float) getDurationMusicBackground {
+    return [am.backgroundMusic.audioSourcePlayer duration];
+}
+
+-(void) setNextTrack:(NSString *)strNextTrack {
+    [am setNextTrack:strNextTrack];
+}
 
 @end 

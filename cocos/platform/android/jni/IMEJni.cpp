@@ -33,6 +33,19 @@ THE SOFTWARE.
 using namespace cocos2d;
 
 extern "C" {
+    bool isKeyboardOpenJNI()
+    {
+        bool keyboardOpen = false;
+        JniMethodInfo t;
+
+        if (JniHelper::getStaticMethodInfo(t, "org/cocos2dx/lib/Cocos2dxGLSurfaceView", "isSoftKeyboardShown", "()Z")) {
+            keyboardOpen = t.env->CallStaticBooleanMethod(t.classID, t.methodID);
+            t.env->DeleteLocalRef(t.classID);
+        }
+
+        return keyboardOpen;
+    }
+
     void setKeyboardStateJNI(int bOpen) {
         if (bOpen) {
             openKeyboardJNI();

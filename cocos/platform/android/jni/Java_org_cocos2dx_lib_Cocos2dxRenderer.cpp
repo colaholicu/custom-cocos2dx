@@ -40,6 +40,12 @@ extern "C" {
         cocos2d::IMEDispatcher::sharedDispatcher()->dispatchInsertText(pszText, strlen(pszText));
     }
 
+    JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeRequestProductsWithCompletion(JNIEnv* env, jobject thiz, jstring obj) {
+        std::string jsonString = JniHelper::jstring2string(obj);
+        const char* pszText = jsonString.c_str();
+        Application::getInstance()->requestProductsWithCompletion(pszText);
+}
+
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeDeleteBackward(JNIEnv* env, jobject thiz) {
         cocos2d::IMEDispatcher::sharedDispatcher()->dispatchDeleteBackward();
     }

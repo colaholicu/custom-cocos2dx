@@ -26,6 +26,7 @@ THE SOFTWARE.
 
 #include "CCArray.h"
 #include "deprecated/CCString.h"
+#include "deprecated/CCDictionary.h"
 #include "platform/CCFileUtils.h"
 
 NS_CC_BEGIN
@@ -483,7 +484,54 @@ __Array* __Array::createWithContentsOfFileThreadSafe(const std::string& fileName
     __Array* ret = __Array::createWithCapacity(static_cast<int>(arr.size()));
 
     for(const auto &value : arr) {
-        ret->addObject(__String::create(value.asString()));
+
+        switch  (value.getType())
+        {
+            case Value::Type::VECTOR:
+            {
+                __Array * anotherArr = __Array::create();
+                
+                for (const auto& iter : value.asValueVector())
+                {
+                    if (iter.getType() != Value::Type::VECTOR && iter.getType() != Value::Type::MAP)
+                    {
+                        anotherArr->addObject(__String::create(iter.asString()));
+                    }
+                }
+                
+                ret->addObject(anotherArr);
+            }
+                break;
+                
+            case Value::Type::MAP:
+            {
+                ValueMap valueAsMap = value.asValueMap();
+                
+                __Dictionary *dict = __Dictionary::create();
+                
+                for (auto keyIter : valueAsMap)
+                {
+                    std::string key = keyIter.first;
+                    Value& val = keyIter.second;
+                    
+                    if (val.getType() != Value::Type::VECTOR && val.getType() != Value::Type::MAP)
+                    {
+                        dict->setObject(__String::create(val.asString()), key);
+                    }
+                }
+                
+                ret->addObject(dict);
+            }
+                break;
+                
+            case Value::Type::STRING:
+            {
+                ret->addObject(__String::create(value.asString()));
+            }
+                break;
+        }
+
+        
     }
     
     return ret;

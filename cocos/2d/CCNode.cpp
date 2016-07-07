@@ -1195,8 +1195,10 @@ void Node::removeFromPhysicsWorld()
 void Node::removeAllChildrenWithCleanup(bool cleanup)
 {
     // not using detachChild improves speed here
-    for (const auto& child : _children)
+    // for (const auto& child : _children)
+    for (int i = 0; i < _children.size(); ++i)
     {
+        const auto& child = _children.at(i);
         // IMPORTANT:
         //  -1st do onExit
         //  -2nd cleanup

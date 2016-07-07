@@ -23,7 +23,7 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "audio/include/SimpleAudioEngine.h"
-#include "SimpleAudioEngine_objc.h"
+#include "audio/ios/SimpleAudioEngine_objc.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -70,6 +70,11 @@ static bool static_willPlayBackgroundMusic()
 static bool static_isBackgroundMusicPlaying()
 {
     return [[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying];
+}
+
+static bool static_isEffectPlaying(unsigned int sourceId)
+{
+    return [[SimpleAudioEngine sharedEngine] isEffectPlaying:sourceId];
 }
 
 static float static_getBackgroundMusicVolume()
@@ -137,6 +142,16 @@ static void static_resumeAllEffects()
 static void static_stopAllEffects()
 {
     [[SimpleAudioEngine sharedEngine] stopAllEffects];
+}
+
+static float static_getDurationMusicBackground()
+{
+    return [[SimpleAudioEngine sharedEngine] getDurationMusicBackground];
+}
+
+static void static_setNextTrack(std::string strNextTrack)
+{
+    [[SimpleAudioEngine sharedEngine] setNextTrack:[NSString stringWithUTF8String: strNextTrack.c_str()]];
 }
 
 namespace CocosDenshion {
@@ -217,6 +232,11 @@ bool SimpleAudioEngine::isBackgroundMusicPlaying()
 {
     return static_isBackgroundMusicPlaying();
 }
+    
+bool SimpleAudioEngine::isEffectPlaying(unsigned int sourceId)
+{
+    return static_isEffectPlaying(sourceId);
+}
 
 float SimpleAudioEngine::getBackgroundMusicVolume()
 {
@@ -288,6 +308,16 @@ void SimpleAudioEngine::resumeAllEffects()
 void SimpleAudioEngine::stopAllEffects()
 {
     static_stopAllEffects();
+}
+    
+float SimpleAudioEngine::getDurationMusicBackground()
+{
+    return static_getDurationMusicBackground();
+}
+    
+void SimpleAudioEngine::setNextTrack(std::string strNextTrack)
+{
+    static_setNextTrack(strNextTrack);
 }
 
 } // endof namespace CocosDenshion {

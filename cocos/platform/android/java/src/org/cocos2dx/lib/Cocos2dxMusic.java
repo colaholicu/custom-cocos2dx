@@ -181,6 +181,16 @@ public class Cocos2dxMusic {
         return ret;
     }
 
+    public int getDurationMusicBackground()
+    {
+        int duration =0;
+        if(mBackgroundMediaPlayer != null)
+        {
+            duration = mBackgroundMediaPlayer.getDuration();
+        }
+        return duration;
+    }
+
     public void end() {
         if (this.mBackgroundMediaPlayer != null) {
             this.mBackgroundMediaPlayer.release();

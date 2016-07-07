@@ -58,7 +58,7 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
     private Cocos2dxRenderer mCocos2dxRenderer;
     private Cocos2dxEditBox mCocos2dxEditText;
 
-    public boolean isSoftKeyboardShown() {
+    public static boolean isSoftKeyboardShown() {
         return mSoftKeyboardShown;
     }
 
@@ -66,7 +66,7 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
         this.mSoftKeyboardShown = softKeyboardShown;
     }
 
-    private boolean mSoftKeyboardShown = false;
+    private static boolean mSoftKeyboardShown = false;
 
 
     // ===========================================================
@@ -104,6 +104,7 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
                             final String text = (String) msg.obj;
                             Cocos2dxGLSurfaceView.this.mCocos2dxEditText.append(text);
                             Cocos2dxGLSurfaceView.sCocos2dxTextInputWraper.setOriginText(text);
+                            Cocos2dxGLSurfaceView.this.mCocos2dxEditText.setHeight(10);
                             Cocos2dxGLSurfaceView.this.mCocos2dxEditText.addTextChangedListener(Cocos2dxGLSurfaceView.sCocos2dxTextInputWraper);
                             final InputMethodManager imm = (InputMethodManager) Cocos2dxGLSurfaceView.mCocos2dxGLSurfaceView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                             imm.showSoftInput(Cocos2dxGLSurfaceView.this.mCocos2dxEditText, 0);
@@ -420,5 +421,16 @@ public class Cocos2dxGLSurfaceView extends GLSurfaceView {
         }
         sb.append("]");
         Log.d(Cocos2dxGLSurfaceView.TAG, sb.toString());
+    }
+
+    public void requestProductsWithCompletion(final String obj){
+        this.queueEvent(new Runnable() {
+
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                Cocos2dxGLSurfaceView.this.mCocos2dxRenderer.requestProductsWithCompletion(obj);
+            }
+        });
     }
 }

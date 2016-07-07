@@ -291,6 +291,11 @@ public class Cocos2dxHelper {
         Cocos2dxHelper.sCocos2dMusic.setBackgroundVolume(volume);
     }
 
+    public static int getDurationMusicBackground()
+    {
+        return Cocos2dxHelper.sCocos2dMusic.getDurationMusicBackground();
+    }
+
     public static void preloadEffect(final String path) {
         Cocos2dxHelper.sCocos2dSound.preloadEffect(path);
     }

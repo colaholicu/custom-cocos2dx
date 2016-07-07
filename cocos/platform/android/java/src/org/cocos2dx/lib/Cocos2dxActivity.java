@@ -35,6 +35,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager.OnActivityResultListener;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -418,6 +419,8 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
                                        ViewGroup.LayoutParams.WRAP_CONTENT);
         Cocos2dxEditBox edittext = new Cocos2dxEditBox(this);
         edittext.setLayoutParams(edittext_layout_params);
+        edittext.setReturnType(1);
+        edittext.setInputMode(InputType.TYPE_CLASS_TEXT);
 
 
         mFrameLayout.addView(edittext);
@@ -485,4 +488,9 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
     // ===========================================================
     // Inner and Anonymous Classes
     // ===========================================================
+
+    public void requestProductsWithCompletion(String obj) {
+        this.mGLSurfaceView.requestProductsWithCompletion(obj);
+
+    }
 }

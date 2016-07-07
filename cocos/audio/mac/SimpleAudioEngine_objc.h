@@ -23,7 +23,7 @@
  */
 
 
-#import "CDAudioManager.h"
+#import "audio/mac/CDAudioManager.h"
 
 /**
  A wrapper to the CDAudioManager object.
@@ -70,6 +70,7 @@
 -(void) rewindBackgroundMusic;
 /** returns whether or not the background music is playing */
 -(BOOL) isBackgroundMusicPlaying;
+-(BOOL) isEffectPlaying:(unsigned int) sourceId;
 
 /** plays an audio effect with a file path*/
 -(ALuint) playEffect:(NSString*) filePath loop:(BOOL) loop;
@@ -91,8 +92,10 @@
 -(void) preloadEffect:(NSString*) filePath;
 /** unloads an audio effect from memory */
 -(void) unloadEffect:(NSString*) filePath;
+-(float) getDurationMusicBackground;
 /** Gets a CDSoundSource object set up to play the specified file. */
 -(CDSoundSource *) soundSourceForFile:(NSString*) filePath;
+-(void) setNextTrack:(NSString*)strNextTrack;
 
 /** Shuts down the shared audio engine instance so that it can be reinitialised */
 +(void) end;

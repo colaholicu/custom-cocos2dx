@@ -31,14 +31,14 @@
 #include <unordered_map>
 
 #include "base/CCRef.h"
-#include "AudioCache.h"
-#include "AudioPlayer.h"
+#include "audio/apple/AudioCache.h"
+#include "audio/apple/AudioPlayer.h"
 
 NS_CC_BEGIN
-    namespace experimental{
-#define MAX_AUDIOINSTANCES 256
+class Scheduler;
 
-class AudioEngineThreadPool;
+namespace experimental{
+#define MAX_AUDIOINSTANCES 24
 
 class AudioEngineImpl : public cocos2d::Ref
 {
@@ -47,14 +47,12 @@ public:
     ~AudioEngineImpl();
     
     bool init();
-    void preload2d(const std::string &fileFullPath);
-    int  play2d(const std::string &fileFullPath ,bool loop ,float volume, float pitch, bool unique);
+    int play2d(const std::string &fileFullPath ,bool loop ,float volume);
     void setVolume(int audioID,float volume);
-    void setPitch(int audioID, float pitch);
     void setLoop(int audioID, bool loop);
     bool pause(int audioID);
     bool resume(int audioID);
-    bool stop(int audioID);
+    void stop(int audioID);
     void stopAll();
     float getDuration(int audioID);
     float getCurrentTime(int audioID);
@@ -63,13 +61,11 @@ public:
     
     void uncache(const std::string& filePath);
     void uncacheAll();
-    
+    AudioCache* preload(const std::string& filePath, std::function<void(bool)> callback);
     void update(float dt);
     
 private:
     void _play2d(AudioCache *cache, int audioID);
-    
-    AudioEngineThreadPool* _threadPool;
     
     ALuint _alSources[MAX_AUDIOINSTANCES];
     
@@ -80,17 +76,13 @@ private:
     std::unordered_map<std::string, AudioCache> _audioCaches;
     
     //audioID,AudioInfo
-    std::unordered_map<int, AudioPlayer>  _audioPlayers;
-    
+    std::unordered_map<int, AudioPlayer*>  _audioPlayers;
     std::mutex _threadMutex;
-    
-    std::vector<AudioCache*> _toRemoveCaches;
-    std::vector<int> _toRemoveAudioIDs;
     
     bool _lazyInitLoop;
     
     int _currentAudioID;
-    
+    Scheduler* _scheduler;
 };
 }
 NS_CC_END

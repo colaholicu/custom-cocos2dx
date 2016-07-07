@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2014 Chukong Technologies Inc.
+ Copyright (c) 2014-2015 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -22,7 +22,7 @@
  THE SOFTWARE.
  ****************************************************************************/
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-#include "AudioEngine-inl.h"
+#include "audio/android/AudioEngine-inl.h"
 
 #include <unistd.h>
 // for native asset manager
@@ -38,10 +38,11 @@
 #include "base/CCDirector.h"
 #include "base/CCScheduler.h"
 #include "platform/android/CCFileUtils-android.h"
-#include "platform/android/jni/CocosPlayClient.h"
 
 using namespace cocos2d;
 using namespace cocos2d::experimental;
+
+#define DELAY_TIME_TO_REMOVE 0.5f
 
 void PlayOverEvent(SLPlayItf caller, void* context, SLuint32 playEvent)
 {
@@ -67,6 +68,7 @@ AudioPlayer::AudioPlayer()
     , _playOver(false)
     , _loop(false)
     , _assetFd(0)
+    , _delayTimeToRemove(-1.f)
 {
 
 }
@@ -246,14 +248,12 @@ int AudioEngineImpl::play2d(const std::string &filePath ,bool loop ,float volume
 
         auto& player = _audioPlayers[currentAudioID];
         auto fullPath = FileUtils::getInstance()->fullPathForFilename(filePath);
-        cocosplay::updateAssets(fullPath);
         auto initPlayer = player.init(_engineEngine, _outputMixObject, fullPath, volume, loop);
         if (!initPlayer){
             _audioPlayers.erase(currentAudioID);
             log("%s,%d message:create player for %s fail", __func__, __LINE__, filePath.c_str());
             break;
         }
-        cocosplay::notifyFileLoaded(fullPath);
 
         audioId = currentAudioID++;
         player._audioID = audioId;
@@ -276,18 +276,32 @@ int AudioEngineImpl::play2d(const std::string &filePath ,bool loop ,float volume
 
 void AudioEngineImpl::update(float dt)
 {
-    auto itend = _audioPlayers.end();
-    for (auto iter = _audioPlayers.begin(); iter != itend; ++iter)
-    {
-        if(iter->second._playOver)
-        {
-            if (iter->second._finishCallback)
-                iter->second._finishCallback(iter->second._audioID, *AudioEngine::_audioIDInfoMap[iter->second._audioID].filePath); 
+    AudioPlayer* player = nullptr;
 
-            AudioEngine::remove(iter->second._audioID);
-            _audioPlayers.erase(iter);
-            break;
+    auto itend = _audioPlayers.end();
+    for (auto iter = _audioPlayers.begin(); iter != itend; )
+    {
+        player = &(iter->second);
+        if (player->_delayTimeToRemove > 0.f)
+        {
+            player->_delayTimeToRemove -= dt;
+            if (player->_delayTimeToRemove < 0.f)
+            {
+                iter = _audioPlayers.erase(iter);
+                continue;
+            }
         }
+        else if (player->_playOver)
+        {
+            if (player->_finishCallback)
+                player->_finishCallback(player->_audioID, *AudioEngine::_audioIDInfoMap[player->_audioID].filePath);
+
+            AudioEngine::remove(player->_audioID);
+            iter = _audioPlayers.erase(iter);
+            continue;
+        }
+
+        ++iter;
     }
     
     if(_audioPlayers.empty()){
@@ -307,7 +321,7 @@ void AudioEngineImpl::setVolume(int audioID,float volume)
     }
     auto result = (*player._fdPlayerVolume)->SetVolumeLevel(player._fdPlayerVolume, dbVolume);
     if(SL_RESULT_SUCCESS != result){
-        log("%s error:%u",__func__, result);
+        log("%s error:%lu", __func__, result);
     }
 }
 
@@ -327,7 +341,7 @@ void AudioEngineImpl::pause(int audioID)
     auto& player = _audioPlayers[audioID];
     auto result = (*player._fdPlayerPlay)->SetPlayState(player._fdPlayerPlay, SL_PLAYSTATE_PAUSED);
     if(SL_RESULT_SUCCESS != result){
-        log("%s error:%u",__func__, result);
+        log("%s error:%lu", __func__, result);
     }
 }
 
@@ -336,7 +350,7 @@ void AudioEngineImpl::resume(int audioID)
     auto& player = _audioPlayers[audioID];
     auto result = (*player._fdPlayerPlay)->SetPlayState(player._fdPlayerPlay, SL_PLAYSTATE_PLAYING);
     if(SL_RESULT_SUCCESS != result){
-        log("%s error:%u",__func__, result);
+        log("%s error:%lu", __func__, result);
     }
 }
 
@@ -345,10 +359,16 @@ void AudioEngineImpl::stop(int audioID)
     auto& player = _audioPlayers[audioID];
     auto result = (*player._fdPlayerPlay)->SetPlayState(player._fdPlayerPlay, SL_PLAYSTATE_STOPPED);
     if(SL_RESULT_SUCCESS != result){
-        log("%s error:%u",__func__, result);
+        log("%s error:%lu", __func__, result);
     }
 
-    _audioPlayers.erase(audioID);
+    /*If destroy openSL object immediately,it may cause dead lock.
+     *It's a system issue.For more information:
+     *    https://github.com/cocos2d/cocos2d-x/issues/11697
+     *    https://groups.google.com/forum/#!msg/android-ndk/zANdS2n2cQI/AT6q1F3nNGIJ
+     */
+    player._delayTimeToRemove = DELAY_TIME_TO_REMOVE;
+    //_audioPlayers.erase(audioID);
 }
 
 void AudioEngineImpl::stopAll()
@@ -356,9 +376,13 @@ void AudioEngineImpl::stopAll()
     auto itEnd = _audioPlayers.end();
     for (auto it = _audioPlayers.begin(); it != itEnd; ++it)
     {
-        auto result = (*it->second._fdPlayerPlay)->SetPlayState(it->second._fdPlayerPlay, SL_PLAYSTATE_STOPPED);
+        (*it->second._fdPlayerPlay)->SetPlayState(it->second._fdPlayerPlay, SL_PLAYSTATE_STOPPED);
+        if (it->second._delayTimeToRemove < 0.f)
+        {
+            //If destroy openSL object immediately,it may cause dead lock.
+            it->second._delayTimeToRemove = DELAY_TIME_TO_REMOVE;
+        }
     }
-    _audioPlayers.clear();
 }
 
 float AudioEngineImpl::getDuration(int audioID)
@@ -403,6 +427,15 @@ bool AudioEngineImpl::setCurrentTime(int audioID, float time)
 void AudioEngineImpl::setFinishCallback(int audioID, const std::function<void (int, const std::string &)> &callback)
 {
     _audioPlayers[audioID]._finishCallback = callback;
+}
+
+void AudioEngineImpl::preload(const std::string& filePath, std::function<void(bool)> callback)
+{
+    CCLOG("Preload not support on Anroid");
+    if (callback)
+    {
+        callback(false);
+    }
 }
 
 #endif

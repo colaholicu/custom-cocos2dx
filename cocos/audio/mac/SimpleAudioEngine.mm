@@ -23,7 +23,7 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "audio/include/SimpleAudioEngine.h"
-#include "SimpleAudioEngine_objc.h"
+#include "audio/mac/SimpleAudioEngine_objc.h"
 #include <string>
 
 #include "platform/CCFileUtils.h"
@@ -72,6 +72,11 @@ static bool static_willPlayBackgroundMusic()
 static bool static_isBackgroundMusicPlaying()
 {
     return [[SimpleAudioEngine sharedEngine] isBackgroundMusicPlaying];
+}
+
+static bool static_isEffectPlaying(unsigned int soundId)
+{
+    return [[SimpleAudioEngine sharedEngine] isEffectPlaying:soundId];
 }
 
 static float static_getBackgroundMusicVolume()
@@ -139,6 +144,11 @@ static void static_resumeAllEffects()
 static void static_stopAllEffects()
 {
     [[SimpleAudioEngine sharedEngine] stopAllEffects];
+}
+
+static float getDurationMusicBackground()
+{
+    return [[SimpleAudioEngine sharedEngine] getDurationMusicBackground];
 }
 
 namespace CocosDenshion {
@@ -219,6 +229,11 @@ bool SimpleAudioEngine::isBackgroundMusicPlaying()
 {
     return static_isBackgroundMusicPlaying();
 }
+    
+bool SimpleAudioEngine::isEffectPlaying(unsigned int sourceId)
+{
+    return static_isEffectPlaying(sourceId);
+}
 
 float SimpleAudioEngine::getBackgroundMusicVolume()
 {
@@ -266,6 +281,11 @@ void SimpleAudioEngine::unloadEffect(const char* pszFilePath)
     std::string fullPath = FileUtils::getInstance()->fullPathForFilename(pszFilePath);
     static_unloadEffect(fullPath.c_str());
 }
+    
+float SimpleAudioEngine::getDurationMusicBackground()
+{
+    return 0.f;
+}
 
 void SimpleAudioEngine::pauseEffect(unsigned int uSoundId)
 {
@@ -290,5 +310,10 @@ void SimpleAudioEngine::resumeAllEffects()
 void SimpleAudioEngine::stopAllEffects()
 {
     static_stopAllEffects();
+}
+    
+void SimpleAudioEngine::setNextTrack(std::string strNextTrack)
+{
+    
 }
 }

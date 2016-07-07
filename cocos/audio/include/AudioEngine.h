@@ -23,7 +23,6 @@
  ****************************************************************************/
 
 #include "platform/CCPlatformConfig.h"
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 
 #ifndef __AUDIO_ENGINE_H_
 #define __AUDIO_ENGINE_H_
@@ -34,14 +33,14 @@
 #include <unordered_map>
 
 #include "platform/CCPlatformMacros.h"
-#include "Export.h"
+#include "audio/include/Export.h"
 
 #ifdef ERROR
 #undef ERROR
 #endif // ERROR
 
 /**
- * @addtogroup core
+ * @addtogroup audio
  * @{
  */
 
@@ -66,14 +65,13 @@ public:
     double minDelay;
     
     /**
-     * Defautl constructor
+     * Default constructor
      *
      * @lua new
      */
     AudioProfile()
     : maxInstances(0)
     , minDelay(0.0)
-	, name("")
     {
         
     }
@@ -125,24 +123,18 @@ public:
     /** 
      * Play 2d sound.
      *
-     * @param filePath The path of an audio file
-     * @param loop Whether audio instance loop or not
-     * @param volume volume value (range from 0.0 to 1.0)
-     * @param profile a profile for audio instance
-     * @param unique play the sound without looking into the cache
-     * @param pitch the pitch of the sound
-     * @return an audio ID. It allows you to dynamically change the behavior of an audio instance on the fly.
+     * @param filePath The path of an audio file.
+     * @param loop Whether audio instance loop or not.
+     * @param volume Volume value (range from 0.0 to 1.0).
+     * @param profile A profile for audio instance. When profile is not specified, default profile will be used.
+     * @return An audio ID. It allows you to dynamically change the behavior of an audio instance on the fly.
      *
      * @see `AudioProfile`
      */
-    static int play2d(const std::string& filePath, bool loop = false, float volume = 1.0f, float pitch = 1.f, const AudioProfile *profile = nullptr, bool unique = false);
+    static int play2d(const std::string& filePath, bool loop = false, float volume = 1.0f, const AudioProfile *profile = nullptr);
     
-    /** Preload 2d sound
-     * @param filePath The path of an audio file
-     */
-    static void preload2d(const std::string& filePath);
-    
-    /** Sets whether an audio instance loop or not. 
+    /** 
+     * Sets whether an audio instance loop or not.
      *
      * @param audioID An audioID returned by the play2d function.
      * @param loop Whether audio instance loop or not.
@@ -173,24 +165,16 @@ public:
      */
     static float getVolume(int audioID);
 
-	/** Gets the file path of an audio instance.
-     * @param audioID an audioID returned by the play2d function
-     * @return string value
-     */
-    static const std::string* getFilePath(int audioID);
-
     /** 
      * Pause an audio instance.
      *
      * @param audioID An audioID returned by the play2d function.
      */
-    static void pause(int audioID, bool force = false);
+    static void pause(int audioID);
 
     /** Pause all playing audio instances. */
     static void pauseAll();
 
-    /** Pause all playing audio instances belonging to a certain AudioProfile */
-    static void pauseAllFromProfile(AudioProfile *profile);
     /** 
      * Resume an audio instance.
      *
@@ -201,8 +185,6 @@ public:
     /** Resume all suspended audio instances. */
     static void resumeAll();
 
-    /** Resume all suspended audio instances belonging to a certain AudioProfile */
-    static void resumeAllFromProfile(AudioProfile *profile);
     /** 
      * Stop an audio instance.
      *
@@ -212,9 +194,6 @@ public:
 
     /** Stop all audio instances. */
     static void stopAll();
-
-	/** Stop all audio instances belonging to a certain AudioProfile */
-    static void stopAllFromProfile(AudioProfile *profile);
 
     /**
      * Sets the current playback position of an audio instance.
@@ -301,8 +280,21 @@ public:
      */
     static AudioProfile* getProfile(const std::string &profileName);
 
+    /**
+     * Preload audio file.
+     * @param filePath The file path of an audio.
+     */
+    static void preload(const std::string& filePath) { preload(filePath, nullptr); }
+
+    /**
+     * Preload audio file.
+     * @param filePath The file path of an audio.
+     * @param callback A callback which will be called after loading is finished.
+     */
+    static void preload(const std::string& filePath, std::function<void(bool isSuccess)> callback);
+
 protected:
-    
+    static void addTask(const std::function<void()>& task);
     static void remove(int audioID);
     
     struct ProfileHelper
@@ -326,12 +318,9 @@ protected:
         ProfileHelper* profileHelper;
         
         float volume;
-        float pitch;
         bool loop;
         float duration;
         AudioState state;
-        
-        bool is3dAudio;
 
         AudioInfo()
             : profileHelper(nullptr)
@@ -356,6 +345,9 @@ protected:
     static ProfileHelper* _defaultProfileHelper;
     
     static AudioEngineImpl* _audioEngineImpl;
+
+    class AudioEngineThreadPool;
+    static AudioEngineThreadPool* s_threadPool;
     
     friend class AudioEngineImpl;
 };
@@ -367,4 +359,3 @@ NS_CC_END
 /// @}
 
 #endif // __AUDIO_ENGINE_H_
-#endif

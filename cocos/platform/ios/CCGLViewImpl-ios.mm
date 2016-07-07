@@ -93,7 +93,7 @@ void GLViewImpl::convertAttrs()
         _pixelFormat = kEAGLColorFormatRGB565;
     } else
     {
-        CCASSERT(0, "Unsupported render buffer pixel format. Using default");
+//        CCASSERT(0, "Unsupported render buffer pixel format. Using default");
     }
 
     if(_glContextAttrs.depthBits==24 && _glContextAttrs.stencilBits==8)
@@ -104,7 +104,7 @@ void GLViewImpl::convertAttrs()
         _depthFormat = 0;
     } else
     {
-        CCASSERT(0, "Unsupported format for depth and stencil buffers. Using default");
+//        CCASSERT(0, "Unsupported format for depth and stencil buffers. Using default");
     }
 }
 
